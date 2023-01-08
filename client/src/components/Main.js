@@ -14,7 +14,7 @@ const Main = () => {
 
     const { searchTextDebounced: searchText, onSearchTextChanged } = useSearchText('');
     const { users, usersloading, usersError } = useUsers({ filter: searchText });
-    const { mapRef, mapView, selectUser, drawUsersOnMap } = useMapView();
+    const { mapRef, mapView, selectedUserID,selectUser, drawUsersOnMap } = useMapView();
 
     useEffect(() => {
 
@@ -32,7 +32,7 @@ const Main = () => {
         gridTemplateColumns: "1fr 4fr"
     }}>
         <Map ref={mapRef} />
-        <Box sx={{ gridArea: 'users' }}>
+        <Box sx={{ gridArea: 'users', height: '100vh', overflowY: 'auto' }}>
             <SearchBox
                 sx={{ width: '100%' }}
                 onSearchTextChanged={onSearchTextChanged}
@@ -40,6 +40,7 @@ const Main = () => {
             <Users
                 loading={usersloading}
                 users={users}
+                selectedUserID={selectedUserID}
                 onClick={selectUser}
             />
         </Box>

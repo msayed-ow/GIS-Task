@@ -4,6 +4,7 @@ const cors = require('cors');
 
 
 const usersRouter = require('./src/routes/users');
+const loginRouter = require('./src/routes/login');
 const handleErrors = require('./src/middleware/handle-errors');
 
 // Creating express object
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/users/', usersRouter);
+app.use('/authorization/', loginRouter);
 app.use(handleErrors);
 
 // Port Number

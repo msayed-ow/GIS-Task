@@ -6,8 +6,8 @@ const useUsers = ({ filter }) => {
     const [users, setUsers] = useState([]);
     const [usersloading, setUsersLoading] = useState(true);
     const [usersError, setUsersError] = useState(null);
-    const [filteredUsers, setFilteredUsers] = useState([]);
 
+    const filteredUsers = filter ? users?.filter(user => user.name.toLowerCase().includes(filter.toLowerCase())) : users;
     useEffect(() => {
 
         const getUsers = async () => {
@@ -30,18 +30,6 @@ const useUsers = ({ filter }) => {
         getUsers();
 
     }, []);
-
-    useEffect(_ => {
-
-        if (filter) {
-
-            var filterUsers = users?.filter(user => user.name.toLowerCase().includes(filter.toLowerCase()));
-            setFilteredUsers(filterUsers);
-        }
-
-        else setFilteredUsers([...users]);
-
-    }, [users, filter]);
 
     return { users: filteredUsers, usersloading, usersError };
 }

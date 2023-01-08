@@ -22,17 +22,6 @@ router.get('/', async (req, res) => {
             result: usersArray,
             error: null
         })
-
-        // usersRef.get().then(docsSnapshot => {
-        //     docsSnapshot.forEach(element => {
-        //         usersArray.push(element.data())
-        //     });
-
-        //     res.status(200).send({
-        //         result: usersArray,
-        //         error: null
-        //     })
-        // });
     } catch (error) {
         res.status(400).send({
             result: null,
@@ -61,10 +50,6 @@ router.post('/add', validate(usersSchema), (req, res, next) => {
     } catch (error) {
         res.statusCode=400;
         return next(new Error(error.message))
-        // res.status(400).send({
-        //     result: null,
-        //     error: error.message
-        // })
     }
 });
 
